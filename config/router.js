@@ -8,6 +8,7 @@ module.exports = function(router){
 		.post(login.adminLog);
 
   router.route('/signup')
+		.get(function(req,res){res.send('LOL sign up pa more')})
 		.post(signup.create);
 
 		router.route('/logout')

@@ -2,6 +2,7 @@ var pg = require('pg');
 var conString = "postgres://cmsc127:cmsc127@127.0.0.1/spotify";
 var app = require('../index');
 var session = require('express-session');
+var path = require('path');
 app.use(session({secret: 'ssshhhhh'}));
 
 var sess;
@@ -9,7 +10,7 @@ var sess;
 exports.defaultLog = function(req, res, next){
 	sess = req.session;
 
-	if(sess.username) res.send('logged in as ' + sess.username);
+	if(sess.username) res.sendFile(path.join(__dirname + '/../public/home/home.html'));
 	else res.redirect('/');
 
 }
@@ -18,7 +19,7 @@ exports.adminLog = function(req, res, next){
 
 	sess = req.session;
 
-	if(sess.username) res.send('logged in as ' + sess.username);
+	if(sess.username) res.sendFile(path.join(__dirname + '/../public/home/home.html'));
 	else{
 			var results = [];
 
@@ -43,7 +44,7 @@ exports.adminLog = function(req, res, next){
 
 				query.on('end', function() {
 						done();
-						if(sess.username) return res.send('Log-in Successful');
+						if(sess.username) return res.sendFile(path.join(__dirname + '/../public/home/home.html'));
 							return res.redirect('/');
 				});
 
