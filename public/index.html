@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title> Allegro </title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="">
+		<link rel="stylesheet" type="text/css" href="css/materialize/css/materialize.min.css">
 	</head>
 	<body>
 
-		<h1> Home Screen </h1>
+			<h1> Home Screen </h1>
 
-		<br/>
+			<br/>
+			<div class="row">
+				<div class="col s3 offset-s3">
+					<h2> Log-in </h2>
 
-		<h2> Log-in </h2>
+					<form method="POST" action="http://localhost:3000/adminLogin">
+						<strong> Admin ID </strong><input type="text" placeholder="id" required="" name="id"/>
+						<strong> Username </strong><input type="text" placeholder="username" required="" name="username"/>
+						<strong> Password </strong><input type="password" required="" name="password"/>
+						<input type="submit" value="login"/>
+					</form>
+				</div>
+				<div class="col s3">
+				<h2> Sign up </h2>
 
-		<form method="GET" action="http://localhost:8000/adminLogin">
-			<strong> Admin ID </strong><input type="text" placeholder="id" required="" name="id"/>
-			<strong> Username </strong><input type="text" placeholder="username" required=""/>
-			<strong> Password </strong><input type="password" required=""/>
-			<input type="submit" value="login"/>
-		</form>
-
-		<h2> Sign up </h2>
-
-		<form method="POST" action="http://localhost:8000/signup">
-			<strong> Admin ID </strong><input type="text" placeholder="id" required="" name="id"/>
-			<strong> Username </strong><input type="text" placeholder="username" required="" name="username"/>
-			<strong> Password </strong><input type="password" required="" name="password"/>
-			<input type="submit" value="Create"/>
-		</form>
+				<form method="POST" action="http://localhost:3000/signup">
+					<strong> Admin ID </strong><input type="text" placeholder="id" required="" name="id"/>
+					<strong> Username </strong><input type="text" placeholder="username" required="" name="username"/>
+					<strong> Password </strong><input type="password" required="" name="password"/>
+					<input type="submit" value="sign-up"/>
+				</form>
+			</div>
+			</div>
 
 		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="css/materialize/js/materialize.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
 		<script type="text/javascript" src="app.js"></script>

@@ -1,5 +1,5 @@
 var pg = require('pg');
-var conString = "postgres://postgres:cmsc127@localhost/spotify";
+var conString = process.env.DATABASE_URL || "postgres://cmsc127:cmsc127@127.0.0.1/spotify";
 
 exports.create = function(req,res,next){
 
@@ -19,21 +19,24 @@ exports.create = function(req,res,next){
           client.query("INSERT INTO admin values($1, $2, $3)", [req.body.id, req.body.password, req.body.username], function(err){
 
               if(err) res.send("error");
+							else{
 
-          });
+								// SQL Query > Select Data
+								var query = client.query("SELECT * FROM admin");
 
-          // SQL Query > Select Data
-          var query = client.query("SELECT * FROM admin");
+								// Stream results back one row at a time
+								query.on('row', function(row) {
+										results.push(row);
+								});
 
-          // Stream results back one row at a time
-          query.on('row', function(row) {
-              results.push(row);
-          });
+								// After all data is returned, close connection and return results
+								query.on('end', function() {
+										done();
+										return res.json(results);
+								});
 
-          // After all data is returned, close connection and return results
-          query.on('end', function() {
-              done();
-              return res.json(results);
+							}
+
           });
 
 

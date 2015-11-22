@@ -4,10 +4,14 @@ var signup = require('./../controllers/signup');
 module.exports = function(router){
 
 	router.route('/adminLogin')
-		.get(login.adminLog);
+		.get(login.defaultLog)
+		.post(login.adminLog);
 
   router.route('/signup')
 		.post(signup.create);
+
+		router.route('/logout')
+			.get(login.logout);
 
 	return router;
 };
