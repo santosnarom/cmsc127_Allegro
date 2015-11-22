@@ -4,8 +4,9 @@ CMSC 127 (Spotify)
 
 How to run
 
-1. Install node
-2. Install bower via npm
-3. Run npm install
-4. Run bower install
-5. run using node index.js
+Prerequisites: nodejs, npm, postgresql
+
+1. Run npm install
+2. Run bower install
+3. Run node models/database.js using node *(soon)
+4. run using node index.js
