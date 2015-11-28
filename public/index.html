@@ -12,7 +12,7 @@
 			<br/>
 			<div class="row">
 				<div class="col s3 offset-s3">
-					<h2> Log-in </h2>
+					<h2> Admin Log-in </h2>
 
 					<form method="POST" action="http://localhost:3000/adminLogin">
 						<strong> Admin ID </strong><input type="text" placeholder="id" required="" name="id"/>
@@ -22,10 +22,31 @@
 					</form>
 				</div>
 				<div class="col s3">
-				<h2> Sign up </h2>
+				<h2> Admin Sign up </h2>
 
-				<form method="POST" action="http://localhost:3000/signup">
+				<form method="POST" action="http://localhost:3000/adminSignup">
 					<strong> Admin ID </strong><input type="text" placeholder="id" required="" name="id"/>
+					<strong> Username </strong><input type="text" placeholder="username" required="" name="username"/>
+					<strong> Password </strong><input type="password" required="" name="password"/>
+					<input type="submit" value="sign-up"/>
+				</form>
+			</div>
+			</div>
+
+			<div class="row">
+				<div class="col s3 offset-s3">
+					<h2> User Log-in </h2>
+
+					<form method="POST" action="http://localhost:3000/regularLogin">
+						<strong> Username </strong><input type="text" placeholder="username" required="" name="username"/>
+						<strong> Password </strong><input type="password" required="" name="password"/>
+						<input type="submit" value="login"/>
+					</form>
+				</div>
+				<div class="col s3">
+				<h2> User Sign up </h2>
+
+				<form method="POST" action="http://localhost:3000/regularSignup">
 					<strong> Username </strong><input type="text" placeholder="username" required="" name="username"/>
 					<strong> Password </strong><input type="password" required="" name="password"/>
 					<input type="submit" value="sign-up"/>

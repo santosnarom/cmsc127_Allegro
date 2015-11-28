@@ -1,3 +1,5 @@
+//Create tables and populate database
+
 var pg = require('pg');
 var conString = "postgres://cmsc127:cmsc127@127.0.0.1/spotify";
 
@@ -8,10 +10,10 @@ pg.connect(conString, function(err,client,done){
 
   //edit: create tables
   //create table admin
-  client.query('create table admin(admin_id varchar(10) primary key not null, password varchar(32) not null, username varchar(32) not null);');
+  client.query('create table admin(admin_id varchar(10) primary key not null, password varchar(100) not null, username varchar(32) not null);');
 
   //create table reg_user
-  client.query('create table reg_user(username varchar(32) primary key not null, password varchar(32) not null, date_approved date not null, admin_id varchar(10) references admin(admin_id) not null);');
+  client.query('create table reg_user(username varchar(32) primary key not null, password varchar(100) not null, date_approved date, admin_id varchar(10) references admin(admin_id));');
 
   //create table playlist
   client.query('create table playlist(playlist_number int primary key not null, playlist_name varchar(32) not null, username varchar(32) references reg_user(username) not null);');

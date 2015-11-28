@@ -7,12 +7,20 @@ module.exports = function(router){
 		.get(login.defaultLog)
 		.post(login.adminLog);
 
-  router.route('/signup')
-		.get(function(req,res){res.send('LOL sign up pa more')})
-		.post(signup.create);
+	router.route('/regularLogin')
+		.get(login.defaultLog)
+		.post(login.regularLog);
 
-		router.route('/logout')
-			.get(login.logout);
+  router.route('/adminSignup')
+		.get(function(req,res){res.redirect('/')})
+		.post(signup.createAdmin);
+
+	router.route('/regularSignup')
+		.get(function(req,res){res.redirect('/')})
+		.post(signup.createRegular);
+
+	router.route('/logout')
+		.get(login.logout);
 
 	return router;
 };

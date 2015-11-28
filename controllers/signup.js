@@ -1,7 +1,9 @@
+var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
 var pg = require('pg');
 var conString = process.env.DATABASE_URL || "postgres://cmsc127:cmsc127@127.0.0.1/spotify";
 
-exports.create = function(req,res,next){
+exports.createAdmin = function(req,res,next){
 
 	console.log(req.body);
 
@@ -15,30 +17,82 @@ exports.create = function(req,res,next){
             return res.status(500).json({ success: false, data: err});
           }
 
-          // SQL Query > Insert Data
-          client.query("INSERT INTO admin values($1, $2, $3)", [req.body.id, req.body.password, req.body.username], function(err){
+					bcrypt.genSalt(10, function(err, salt) {
+					    bcrypt.hash(req.body.password, salt, function(err, hash) {
+								// SQL Query > Insert Data
+								client.query("INSERT INTO admin values($1, $2, $3)", [req.body.id, hash, req.body.username], function(err){
 
-              if(err) res.send("error");
-							else{
+										if(err) res.send("error");
+										else{
 
-								// SQL Query > Select Data
-								var query = client.query("SELECT * FROM admin");
+											// SQL Query > Select Data
+											var query = client.query("SELECT * FROM admin");
 
-								// Stream results back one row at a time
-								query.on('row', function(row) {
-										results.push(row);
+											// Stream results back one row at a time
+											query.on('row', function(row) {
+													results.push(row);
+											});
+
+											// After all data is returned, close connection and return results
+											query.on('end', function() {
+													done();
+													return res.json(results);
+											});
+
+										}
+
 								});
 
-								// After all data is returned, close connection and return results
-								query.on('end', function() {
-										done();
-										return res.json(results);
-								});
+					    });
+					});
 
-							}
+      });
 
-          });
+};
 
+
+exports.createRegular = function(req,res,next){
+
+	console.log(req.body);
+
+  var results = [];
+
+  pg.connect(conString, function(err, client, done) {
+          // Handle connection errors
+          if(err) {
+            done();
+            console.log(err);
+            return res.status(500).json({ success: false, data: err});
+          }
+
+					bcrypt.genSalt(10, function(err, salt) {
+							bcrypt.hash(req.body.password, salt, function(err, hash) {
+								// SQL Query > Insert Data
+			          client.query("INSERT INTO reg_user(username, password) values($1, $2)", [req.body.username, hash], function(err){
+
+			              if(err) res.send("error");
+										else{
+
+											// SQL Query > Select Data
+											var query = client.query("SELECT * FROM reg_user");
+
+											// Stream results back one row at a time
+											query.on('row', function(row) {
+													results.push(row);
+											});
+
+											// After all data is returned, close connection and return results
+											query.on('end', function() {
+													done();
+													return res.json(results);
+											});
+
+										}
+
+			          });
+
+							});
+					});
 
       });
 
