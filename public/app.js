@@ -1,16 +1,32 @@
-angular.module('nodeTodo', [])
+'use strict';
 
-.controller('mainController', function($scope, $http) {
+(function(){
 
-    $scope.username = {};
+	angular
+		.module("spotify",["ngRoute"])
+		.config(config);
 
-    // Get all todos
-    $http.get('/regularLogin')
-        .success(function(data) {
-            $scope.username = data;
-            console.log(data);
-        })
-        .error(function(error) {
-            console.log('Error: ' + error);
-        });
-});
+	config.$inject = ["$routeProvider"];
+
+	function config($routeProvider){
+
+    $routeProvider
+		.when('/', {
+      'controller' : 'HomeCtrl',
+      'templateUrl' : 'home/login.view.html'
+    })
+		.when('/signup', {
+			'controller' : 'HomeCtrl',
+			'templateUrl' : 'home/signup.view.html'
+		})
+		.when('/admin-home', {
+			'controller' : 'HomeCtrl',
+			'templateUrl' : 'home/spotify-admin.view.html'
+		})
+		.when('/home', {
+			'controller' : 'HomeCtrl',
+			'templateUrl' : 'home/spotify-user.view.html'
+		});
+	}
+
+})();

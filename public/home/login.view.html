@@ -1,0 +1,49 @@
+<!--	LOGIN	-->
+
+    <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="offset-s9">
+        <a href="#/signup"><button class="waves-effect btn z-depth-3" value="Signup">Signup</button></a>
+      </div>
+      <div class="container" >
+        <br><br>
+        <h1 class="header center white-text" style="text-shadow: 3px 3px black;">Live for Music</h1>
+        <div class="row center">
+          <h5 class="header col s12 white-text" style="text-shadow: 2px 2px black">Your home of sounds. Listen to all of your music in Allegro.</h5>
+          <div class="card col s10 offset-s3" style="height:320px;width:500px;border-radius: 10px;">
+		    <ul class="tabs" >
+		    <li class="tab col s3"><h4 class="black-text">Admin<h4/></li>
+          <li class="tab col s3"><h4 class="black-text">User<h4/></li>
+	    	</ul>
+	    	<div class="col s6"><br/>
+		    <form name="login" class="header col s12 black-text" ng-submit="AdminHome()" accept-charset="utf-8">
+    		  <ul>
+          <li><label for="adminId">Admin ID</label>
+          <input type="text" required="" name="id" ng-model="admin.id"/></li>
+    			<li><label for="username">Username</label>
+    			<input type="text" required="" name="username" ng-model="admin.username"/></li>
+    			<li><label for="password">Password</label>
+    			<input type="password" required="" name="password" ng-model="admin.password"/></li>
+    			<li>
+    			<input type="submit" value="Login" class="waves-effect btn z-depth-3" style="height: 50px; width: 125px"></li>
+    		  </ul>
+		    </form>
+		    </div>
+		    <div class="col s6"><br/>
+		    <form name="login" class="header col s12 black-text" ng-submit="UserHome()" accept-charset="utf-8">
+          <ul>
+          <li><label for="username">Username</label>
+          <input type="text" required="" name="username" ng-model="regular.username"/></li>
+          <li><label for="password">Password</label>
+          <input type="password" required="" name="password" ng-model="regular.password"/></li>
+          <li>
+          <input type="submit" value="Login" class="waves-effect btn z-depth-3" style="height: 50px; width: 125px"></li>
+          </ul>
+		    </form>
+		    </div>
+	  </div>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="src/queen.jpg" style="display: block; transform: translate3d(-50%, 205px, 0px); min-height: 500px; width: 1400px;"></div>
+  </div>

@@ -1,0 +1,32 @@
+<div class="offset-s9">
+  <button class="waves-effect btn z-depth-3" value="Logout" ng-click="Logout()">Logout</button>
+</div>
+<br/>
+<h1> Hi {{username}} </h1>
+
+<br/>
+
+<div class="offset-s9">
+  <button class="waves-effect btn z-depth-3" value="View" ng-click="ViewUsers()">View Users</button>
+</div>
+
+<br/>
+
+<div ng-repeat="users in allusers">
+  <h5> {{users.username + ' ' + users.date_approved + ' '}} </h5>
+  <br/>
+</div>
+
+<br/>
+
+<div class="offset-s9">
+  <button class="waves-effect btn z-depth-3" value="View" ng-click="ViewUnapproved()">View Unapproved</button>
+</div>
+
+<br/>
+
+<div ng-repeat="user in unapproved">
+  <h5> {{user.username}} </h5>
+  <button class="waves-effect btn z-depth-3" value="Approve" ng-click="Approve(user, user.username, username)">Approve</button>
+  <br/>
+</div>

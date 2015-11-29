@@ -1,5 +1,6 @@
 //Create tables and populate database
-
+var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
 var pg = require('pg');
 var conString = "postgres://cmsc127:cmsc127@127.0.0.1/spotify";
 
@@ -32,12 +33,32 @@ pg.connect(conString, function(err,client,done){
 
   //edit: populate database
   //entry1 in table admin
+
+
+/*  bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash('password1', salt, function(err, hash) {
+        // SQL Query > Insert Data
+        client.query("INSERT INTO admin values($1, $2, $3);", ['1111', hash, 'username1'], function(err){
+          if(err) console.log(err);
+        });
+      });
+  });
+
+  bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash('1111', salt, function(err, hash) {
+        // SQL Query > Insert Data
+        client.query("INSERT INTO reg_user values($1, $2, 'now()', (select admin_id from admin where admin_id='1111'));", ['username1', hash], function(err){
+          if(err) console.log(err);
+        });
+      });
+  });
+*/
   client.query("insert into admin values ('1111', 'password1', 'username1');");
   //entry2 in table admin
-  client.query("insert into admin values ('1112', 'password2', 'username2');");
+ client.query("insert into admin values ('1112', 'password2', 'username2');");
 
   //entry1 in table reg_user
-  client.query("insert into reg_user values ('username1', 'password1', 'now()', (select admin_id from admin where admin_id='1111'));");
+ client.query("insert into reg_user values ('username1', 'password1', 'now()', (select admin_id from admin where admin_id='1111'));");
 
   //entry1 in table playlist
   client.query("insert into playlist values (1, 'playlist1', (select username from reg_user where username='username1'));");
