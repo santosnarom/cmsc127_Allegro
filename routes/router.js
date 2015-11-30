@@ -2,6 +2,8 @@
 var login = require('./../controllers/login');
 var signup = require('./../controllers/signup');
 var data = require('./../controllers/data');
+var multer = require('multer');
+var upload = multer({dest:'uploads/'});
 
 module.exports = function(router){
 
@@ -13,6 +15,11 @@ module.exports = function(router){
 
 	router.route('/approve')
 		.post(data.approve);
+
+	router.route('/upload')
+		.post(upload.single('music'), function (req, res, next) {
+			res.send('Uploaded');
+		});
 
 	router.route('/all')
 		.get(data.all);

@@ -3,6 +3,14 @@
  * Copyright 2014-2015 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+
+.songcard {
+  min-width: 235px;
+  min-height: 375px;
+  max-width: 235px;
+  max-height: 375px;
+}
+
 .materialize-red.lighten-5 {
   background-color: #fdeaeb !important; }
 
@@ -2202,6 +2210,7 @@ ul.staggered-list li {
 footer.page-footer {
   margin-top: 20px;
   padding-top: 20px;
+  bottom: 0;
   background-color: #ee6e73; }
   footer.page-footer .footer-copyright {
     overflow: hidden;
@@ -2578,10 +2587,11 @@ nav ul a span.badge {
   margin-right: auto; }
 
 .truncate {
-  display: block;
+  width: 190px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+}
 
 .no-padding {
   padding: 0 !important; }
@@ -5057,7 +5067,7 @@ nav ul a span.badge {
 .container {
   margin: 0 auto;
   max-width: 1280px;
-  width: 90%; }
+  width: 100%; }
 
 @media only screen and (min-width : 601px) {
   .container {
@@ -5477,6 +5487,7 @@ h5 {
   font-size: 1.64rem;
   line-height: 110%;
   margin: 0.82rem 0 0.656rem 0; }
+
 
 
 
@@ -6219,7 +6230,7 @@ a.waves-effect .waves-ripple {
   .side-nav .collapsible li {
     padding: 0; }
 .side-nav .collapsible-header {
-  background-color: transparent;
+  background-color: #fff;
   border: none;
   line-height: inherit;
   height: inherit;
@@ -7104,7 +7115,7 @@ select {
 
 .side-nav {
   position: fixed;
-  width: 240px;
+  width: 300px;
   left: -105%;
   top: 0;
   margin: 0;
@@ -7126,7 +7137,7 @@ select {
     float: none;
     padding: 0 15px; }
     .side-nav li:hover, .side-nav li.active {
-      background-color: #ddd; }
+      background-color: #700000; }
   .side-nav a {
     color: #444;
     display: block;
@@ -7382,6 +7393,7 @@ select {
     opacity: 0; }
 
   90% {
+
 
     opacity: 1; }
 

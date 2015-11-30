@@ -21,6 +21,14 @@
 				else if($scope.admin_id != undefined) $window.location.href = "#/admin-home";
 		 });
 
+		 $scope.Upload = function(){
+			 		console.log($scope.upload);
+					HomeService.UploadFile($scope.upload.music)
+					.then(function(data){
+						console.log('File Uploaded');
+					});
+		 }
+
 		 $scope.AdminSignup = function(){
 					HomeService.AdminSignup($scope.admin)
 					.then(function(data){

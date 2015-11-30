@@ -1,7 +1,52 @@
-<div class="offset-s9">
-  <button class="waves-effect btn z-depth-3" value="Logout" ng-click="Logout()">Logout</button>
-</div>
-<br/>
-<h1> Hi {{username}} </h1>
+<div class="red darken-3">
 
-<br/>
+ <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="mdi-navigation-menu"></i></a></div>
+      <ul id="nav-mobile" class="red darken-4 z-depth-4 " style="width: 320px; left: -250px;">
+        <a class="waves-effect waves-red white-text strong">Allegro Music Player</a>
+        <li><h3>Songs</h3></li>
+        <li><h3>Artists</h3></li>
+        <li><h3>Albums</h3></li>
+         <li><h3>Playlists</h3></li>
+      </ul>
+
+<!--    BANNER		-->
+  <div id="index-banner" class="parallax-container row">
+   <div class="col s9 offset-l3 parallax"><img src="../src/concert.jpg" style="display: block; transform: translate3d(-50%, 205px, 0px); width: 1400px;"></div>
+  </div>
+
+<!--	PLAYLIST	-->
+  <div class="container" style="width: 950px;">
+
+    <div class="col s3">
+      <button class="waves-effect btn z-depth-3" value="Logout" ng-click="Logout()">Logout</button>
+    </div>
+    <h1 class="col s3"> Hi {{username}} </h1>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data" accept="audio/*">
+      <h3>Upload</h3><input type="file" name="music"><br>
+      <input type="submit" value="Upload"><br/>
+    </form>
+
+    <div class="offset-s9">
+      <button class="waves-effect btn z-depth-3" value="Logout" ng-click="Logout()">Logout</button>
+    </div>
+
+      <div class="row white-text">
+        <div id="songtab" class="col s12 offset-s2">
+        	<div>
+				<a class="waves-effect waves-light white-text">
+				  <div  class="card red hoverable">
+				    <div class="card-image">
+				      <img src="../src/beyonce.jpg">
+				    </div>
+				    <div class="card-content truncate">
+				      <p>random</p>
+				      <small>random</small>
+				    </div>
+				  </div>
+				 </a>
+        	</div>
+        </div>
+      </div>
+  </div>
+</div>

@@ -19,8 +19,22 @@
 		service.ViewUsers = ViewUsers;
 		service.RegularSignup = RegularSignup;
 		service.AdminSignup = AdminSignup;
+		service.UploadFile = UploadFile;
 
 		return service;
+
+		function UploadFile(upload){
+			var deferred = $q.defer();
+			$http.post('/upload', upload)
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't upload");
+				});
+
+			return deferred.promise;
+		}
 
 		function AdminSignup(admin){
 			var deferred = $q.defer();
