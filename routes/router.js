@@ -7,6 +7,24 @@ var upload = multer({dest:'uploads/'});
 
 module.exports = function(router){
 
+	router.route('/playlist-delete')
+		.post(data.deletePlaylist);
+
+	router.route('/playlist')
+		.get(data.viewPlaylist);
+
+	router.route('/create-playlist')
+		.post(data.createPlaylist);
+
+	router.route('/search/:id')
+		.get(data.search);
+
+	router.route('/songs-top')
+		.get(data.getTopSongs);
+
+	router.route('/songs')
+		.get(data.getSongs);
+
 	router.route('/session')
 		.get(login.defaultLog);
 

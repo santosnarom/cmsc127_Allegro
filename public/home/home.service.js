@@ -20,8 +20,94 @@
 		service.RegularSignup = RegularSignup;
 		service.AdminSignup = AdminSignup;
 		service.UploadFile = UploadFile;
+		service.GetSongs = GetSongs;
+		service.GetTopSongs = GetTopSongs;
+		service.CreatePlaylist = CreatePlaylist;
+		service.ViewPlaylist = ViewPlaylist;
+		service.DeletePlaylist = DeletePlaylist;
+		service.Search = Search;
 
 		return service;
+
+		function Search(searchQuery){
+			var deferred = $q.defer();
+			$http.get('/search/'+searchQuery)
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't search");
+				});
+
+			return deferred.promise;
+		}
+
+		function DeletePlaylist(number){
+			var deferred = $q.defer();
+			number = {"number":number}
+			$http.post('/playlist-delete', number)
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't retrieve playlist");
+				});
+
+			return deferred.promise;
+		}
+
+		function ViewPlaylist(){
+			var deferred = $q.defer();
+			$http.get('/playlist')
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't retrieve playlist");
+				});
+
+			return deferred.promise;
+		}
+
+		function CreatePlaylist(playlist, username){
+			var deferred = $q.defer();
+			var insert = {"playlist" : playlist, "username" : username}
+			$http.post('/create-playlist', insert)
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't create playlist");
+				});
+
+			return deferred.promise;
+		}
+
+		function GetTopSongs(){
+			var deferred = $q.defer();
+			$http.get('/songs-top')
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't get top songs");
+				});
+
+			return deferred.promise;
+		}
+
+		function GetSongs(){
+			var deferred = $q.defer();
+			$http.get('/songs')
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't get all songs");
+				});
+
+			return deferred.promise;
+		}
 
 		function UploadFile(upload){
 			var deferred = $q.defer();

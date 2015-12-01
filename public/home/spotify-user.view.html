@@ -1,52 +1,64 @@
-<div class="red darken-3">
+  <h1 class="col s3"> Hi {{username}} </h1>
 
- <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="mdi-navigation-menu"></i></a></div>
-      <ul id="nav-mobile" class="red darken-4 z-depth-4 " style="width: 320px; left: -250px;">
-        <a class="waves-effect waves-red white-text strong">Allegro Music Player</a>
-        <li><h3>Songs</h3></li>
-        <li><h3>Artists</h3></li>
-        <li><h3>Albums</h3></li>
-         <li><h3>Playlists</h3></li>
-      </ul>
+  <br/>
+  <form action="/upload" method="POST" enctype="multipart/form-data" accept="audio/*">
+    <h3>Upload</h3><input type="file" name="music"><br>
+    <input type="submit" value="Upload"><br/>
+  </form>
 
-<!--    BANNER		-->
-  <div id="index-banner" class="parallax-container row">
-   <div class="col s9 offset-l3 parallax"><img src="../src/concert.jpg" style="display: block; transform: translate3d(-50%, 205px, 0px); width: 1400px;"></div>
+  <br/>
+  <div class="offset-s9">
+    <button class="waves-effect btn z-depth-3" value="Logout" ng-click="Logout()">Logout</button>
+  </div>
+  <br/>
+  <div class="offset-s9">
+    <button class="waves-effect btn z-depth-3" value="View" ng-click="ViewTopSongs()">View Top Songs</button>
   </div>
 
-<!--	PLAYLIST	-->
-  <div class="container" style="width: 950px;">
+  <br/>
 
-    <div class="col s3">
-      <button class="waves-effect btn z-depth-3" value="Logout" ng-click="Logout()">Logout</button>
-    </div>
-    <h1 class="col s3"> Hi {{username}} </h1>
-
-    <form action="/upload" method="POST" enctype="multipart/form-data" accept="audio/*">
-      <h3>Upload</h3><input type="file" name="music"><br>
-      <input type="submit" value="Upload"><br/>
-    </form>
+  <div ng-repeat="songi in tsongs">
+    <h5> {{songi.song_name +" - " + songi.artist_name + " - " + songi.times_played}}</h5>
+    <br/>
+  </div>
+    <br/>
 
     <div class="offset-s9">
-      <button class="waves-effect btn z-depth-3" value="Logout" ng-click="Logout()">Logout</button>
+      <button class="waves-effect btn z-depth-3" value="View" ng-click="ViewPlaylist()">View Playlists</button>
     </div>
 
-      <div class="row white-text">
-        <div id="songtab" class="col s12 offset-s2">
-        	<div>
-				<a class="waves-effect waves-light white-text">
-				  <div  class="card red hoverable">
-				    <div class="card-image">
-				      <img src="../src/beyonce.jpg">
-				    </div>
-				    <div class="card-content truncate">
-				      <p>random</p>
-				      <small>random</small>
-				    </div>
-				  </div>
-				 </a>
-        	</div>
-        </div>
-      </div>
+    <br/>
+
+    <div ng-repeat="playlist in playlists">
+      <h5> {{playlist.playlist_name + " - " + playlist.username}}
+        <button class="waves-effect btn z-depth-3" ng-if="playlist.username == username" ng-click="DeletePlaylist(playlist.playlist_number, playlist)">delete</button>
+        <button class="waves-effect btn z-depth-3" ng-if="playlist.username == username">edit</button>
+        <button class="waves-effect btn z-depth-3" ng-click="">View</button>
+      </h5>
+      <br/>
+    </div>
+
+      <br/>
+
+  <div class="offset-s9">
+    <form ng-submit="CreatePlaylist(username)" method="POST">
+      <h3>Playlist name</h3><input type="text" name="playlist" ng-model="playlist"><br>
+      <input type="submit" value="Create"><br/>
+    </form>
   </div>
-</div>
+  <br/>
+  <br/>
+  <div class="offset-s9">
+    <form ng-submit="Search()" method="POST">
+      <h3>Search</h3><input type="text" name="search" ng-model="query"><br>
+      <input type="submit" value="Search"><br/>
+    </form>
+  </div>
+
+  <br>
+
+  <div ng-repeat="result in results">
+    <h5> {{result.song_name +" - " + result.artist_name + " - " + result.times_played}}</h5>
+    <br/>
+  </div>
+    <br/>

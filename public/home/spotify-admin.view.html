@@ -30,3 +30,20 @@
   <button class="waves-effect btn z-depth-3" value="Approve" ng-click="Approve(user, user.username, username)">Approve</button>
   <br/>
 </div>
+
+<br/>
+
+<div class="offset-s9">
+  <button class="waves-effect btn z-depth-3" value="View" ng-click="ViewSongs()">View Songs</button>
+</div>
+
+<br/>
+
+<div ng-repeat="song in songs">
+  <h5> {{song.song_name}} </h5>
+  <h5> {{song.artist_name}} </h5>
+  <h5> {{song.album}} </h5>
+  <h5> {{song.track_length}} </h5>
+  <h5> {{song.times_played}} </h5>
+  <br/>
+</div>
