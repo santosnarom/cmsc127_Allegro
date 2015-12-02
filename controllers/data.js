@@ -240,7 +240,7 @@ exports.createPlaylist = function(req, res, next){
       return res.status(500).json({success: false, data: err});
     }
           // SQL Query > Select Data
-          var query = client.query("insert into playlist(playlist_name, username) values($1, $2 ); ", [req.body.playlist, req.body.username]);
+          var query = client.query("insert into playlist(playlist_name, username) values($1, $2); ", [req.body.playlist, req.body.username]);
 
           var query = client.query("select * from playlist");
 

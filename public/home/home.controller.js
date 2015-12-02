@@ -10,6 +10,9 @@
 	function HomeCtrl($scope, HomeService, $window){
 
 		$scope.username = "";
+		$scope.contents = false;
+			$scope.create = false;
+			$scope.add = false;
 
 		HomeService.GetSession()
 		 .then(function(data){
@@ -26,15 +29,29 @@
 		 $scope.ViewPlaylist = function(){
 					HomeService.ViewPlaylist()
 					.then(function(data){
+							$scope.create = false;
+							$scope.contents = false;
+							$scope.add = false;
+						$scope.tsongs = [];
 						if($scope.playlists == '' || $scope.playlists == undefined)
 						$scope.playlists = data;
 						else $scope.playlists = [];
 					});
 		 }
 
+		 $scope.ShowCreate = function(){
+						$scope.tsongs = [];
+						$scope.playlist = [];
+						$scope.create = true;
+						$scope.contents = false;
+						$scope.add = false;
+		 }
+
 		 $scope.AddToPlaylist = function(song, selectedPlaylist){
 					HomeService.AddToPlaylist(song, selectedPlaylist)
 					.then(function(data){
+						$scope.add = false;
+						$scope.contents = true;
 						$scope.content = data;
 					});
 		 }
@@ -61,6 +78,9 @@
 					.then(function(data){
 						$scope.playlists = data;
 						$scope.playlist = "";
+						$scope.create = false;
+						$scope.add = false;
+						$scope.contents = false;
 					});
 		 }
 
@@ -75,6 +95,10 @@
 		 $scope.ViewTopSongs = function(){
 					HomeService.GetTopSongs()
 					.then(function(data){
+							$scope.create = false;
+							$scope.playlists = [];
+							$scope.add = false;
+							$scope.contents = false;
 						if($scope.tsongs == '' || $scope.tsongs == undefined)
 						$scope.tsongs = data;
 						else $scope.tsongs = [];
@@ -84,6 +108,10 @@
 		 $scope.ViewPlaylistContent = function(playlist){
 					HomeService.ViewPlaylistContent(playlist)
 					.then(function(data){
+						$scope.create = false;
+						$scope.contents = true;
+						$scope.add = false;
+						$scope.playlists = [];
 						if($scope.content == '' || $scope.content == undefined)
 						$scope.content = data;
 						else $scope.content = [];
@@ -93,6 +121,10 @@
 		 $scope.ViewSongs = function(playlist_number){
 					HomeService.GetSongs()
 					.then(function(data){
+						$scope.contents = false;
+						$scope.playlists = [];
+						$scope.add = true;
+						$scope.create = false;
 						if($scope.songs == '' || $scope.songs == undefined){
 							$scope.songs = data;
 							$scope.selectedPlaylist = playlist_number;
@@ -104,6 +136,8 @@
 		 $scope.ViewAddSongs = function(){
 					HomeService.GetSongs()
 					.then(function(data){
+						$scope.contents = false;
+						$scope.create = false;
 						if($scope.song == '' || $scope.song == undefined)
 						$scope.song = data;
 						else $scope.song = [];

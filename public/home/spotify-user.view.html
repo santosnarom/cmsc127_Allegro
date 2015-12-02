@@ -1,4 +1,4 @@
-  <h1 class="col s3"> Hi {{username}} </h1>
+  <!--<h1 class="col s3"> Hi {{username}} </h1>
 
   <br/>
   <form action="/upload" method="POST" enctype="multipart/form-data" accept="audio/*">
@@ -19,7 +19,7 @@
   <br/>
 
   <div ng-repeat="songi in tsongs">
-    <h5> {{songi.song_name +" - " + songi.artist_name + " - " + songi.times_played}}</h5>
+
     <br/>
   </div>
     <br/>
@@ -84,3 +84,131 @@
     <audio controls="">
       <source src="99c6362647295006acc374aa7a3302c9" type="audio/mpeg">
     </audio>
+
+  -->
+
+  <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="mdi-navigation-menu"></i></a></div>
+  <ul id="nav-mobile" class="side-nav fixed red darken-4 z-depth-4 " style="width: 320px; left: 10px;">
+    <a class="waves-effect waves-red white-text strong">Allegro Music Player</a>
+    <li class="bold"><a class="waves-effect waves-red white-text" id="song" ng-click="ViewTopSongs()">&emsp;&emsp;Songs</a></li>
+    <li class="bold"><a class="waves-effect waves-red white-text" id="artist" ng-click="ViewPlaylist()">&emsp;&emsp;Playlists</a></li>
+    <li class="bold"><a class="waves-effect waves-red white-text" id="albums" ng-click="ShowCreate()">&emsp;&emsp;Create Playlist</a></li>
+     <li class="bold"><a class="waves-effect waves-red white-text" id="playlists" ng-click="Logout()">&emsp;&emsp;Logout</a></li>
+     <div id="mp3audio" class="row">
+     <div class="col offset-s1 white-text">
+  <span id="title"></span><br>
+  <small id="artistname"></small>
+  <audio id="songplaying" controls="controls" src="" style="width:250px">
+  </audio>
+</div>
+</div>
+  </ul>
+
+<!--    BANNER		-->
+<div id="index-banner" class="parallax-container row">
+<div class="col s9 offset-l3 parallax"><img src="../src/concert.jpg" style="display: block; transform: translate3d(-50%, 205px, 0px); width: 1400px;"></div>
+</div>
+
+<!--	PLAYLIST	-->
+<div class="container" style="width: 950px;">
+  <div class="row white-text" ng-repeat="songi in tsongs" >
+    <div id="songtab" class="col s12 offset-s2">
+      <div class="col s3 songcard">
+      <a class="waves-effect waves-light white-text" onClick="playMusic(this)" id="1" data-value="music/Mozart - Eine kleine Nachtmusik.mp3">
+      <div  class="card red hoverable">
+          <div class="card-image">
+            <img id="pic1" src="../src/theshins.jpg">
+          </div>
+          <div class="card-content truncate">
+              <p id="title1">{{songi.song_name}}</p>
+              <small id="artist1">{{songi.artist_name}}</small>
+                <small id="artist1">{{"Number of Plays: " + songi.times_played}}</small>
+          </div>
+
+      </div>
+      </a>
+    </div>
+    </div>
+    </div>
+
+    <div class="row white-text" ng-repeat="playlist in playlists">
+      <div id="songtab" class="col s12 offset-s2">
+        <div class="col s3 songcard">
+        <a class="waves-effect waves-light white-text" onClick="playMusic(this)" id="1" data-value="music/Mozart - Eine kleine Nachtmusik.mp3">
+        <div  class="card red hoverable">
+            <div class="card-image">
+              <img id="pic1" src="../src/theshins.jpg">
+            </div>
+            <div class="card-content truncate">
+                <p id="title1">{{playlist.playlist_name}}</p>
+                <small id="artist1">{{"by: " + playlist.username}}</small>
+            </div>
+            <a class="waves-effect waves-red white-text" ng-if="playlist.username == username" ng-click="DeletePlaylist(playlist.playlist_number, playlist)">Delete</a>
+            <a class="waves-effect waves-red white-text" ng-if="playlist.username == username" ng-click="ViewSongs(playlist.playlist_number)">Add Song</a>
+            <a class="waves-effect waves-red white-text" ng-click="ViewPlaylistContent(playlist.playlist_number)">View</a>
+
+        </div>
+        </a>
+      </div>
+      </div>
+    </div>
+
+    <div class="row white-text" ng-repeat="song in songs" ng-if="add">
+      <div id="songtab" class="col s12 offset-s2">
+        <div class="col s3 songcard">
+        <a class="waves-effect waves-light white-text" onClick="playMusic(this)" id="1" data-value="music/Mozart - Eine kleine Nachtmusik.mp3">
+        <div  class="card red hoverable">
+            <div class="card-image">
+              <img id="pic1" src="../src/theshins.jpg">
+            </div>
+            <div class="card-content truncate">
+              <br/>
+                <p id="title1">{{song.song_name}}</p>
+                <small id="artist1">{{song.artist_name}}</small>
+                <button class="waves-effect btn z-depth-3" ng-click="AddToPlaylist(song, selectedPlaylist)">Add</button>
+            </div>
+
+        </div>
+        </a>
+      </div>
+      </div>
+    </div>
+
+    <div class="row white-text" ng-repeat="each in content" ng-if="contents" >
+      <div id="songtab" class="col s12 offset-s2">
+        <div class="col s3 songcard">
+        <a class="waves-effect waves-light white-text" onClick="playMusic(this)" id="1" data-value="music/Mozart - Eine kleine Nachtmusik.mp3">
+        <div  class="card red hoverable">
+            <div class="card-image">
+              <img id="pic1" src="../src/theshins.jpg">
+            </div>
+            <div class="card-content truncate">
+                <p id="title1">{{each.song_name}}</p>
+                <small class="waves-effect waves-light white-text" ng-if="each.username == username" ng-click="RemoveFromPlaylist(each,each.song_number)">Remove</small>
+            </div>
+
+        </div>
+        </a>
+      </div>
+      </div>
+      </div>
+
+      <div class="row white-text" ng-show="create"><div id="songtab" class="col s12 offset-s2">
+            <form ng-submit="CreatePlaylist(username)" method="POST">
+            <h3>Playlist name</h3><input type="text" name="playlist" ng-model="playlist"><br>
+            <input type="submit" class="btn btn-large waves-effect waves-light red z-depth-5" value="Create"><br/>
+          </form>
+      </div></div>
+</div>
+
+
+
+<!--	FOOTER WITH CREATORS' INFORMATION	-->
+
+<footer class="page-footer red darken-4 white-text" style="bottom:0;">
+<div class="container right-align offset-l2">
+  <h5>Group No. 1</h5>
+      <p>Colin James Naranjo&emsp;&emsp;Narom Santos&emsp;&emsp;Coleen Bobilles</p>
+      <p>Made through Materialize</p><br>
+ </div>
+</footer>

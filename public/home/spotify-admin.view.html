@@ -7,7 +7,7 @@
 <br/>
 
 <div class="offset-s9">
-  <button class="waves-effect btn z-depth-3" value="View" ng-click="ViewUsers()">View Users</button>
+  <button class="btn btn-large waves-effect waves-light red z-depth-5" value="View" ng-click="ViewUsers()">View Users</button>
 </div>
 
 <br/>
@@ -20,21 +20,21 @@
 <br/>
 
 <div class="offset-s9">
-  <button class="waves-effect btn z-depth-3" value="View" ng-click="ViewUnapproved()">View Unapproved</button>
+  <button class="btn btn-large waves-effect waves-light red z-depth-5" value="View" ng-click="ViewUnapproved()">View Unapproved</button>
 </div>
 
 <br/>
 
 <div ng-repeat="user in unapproved">
   <h5> {{user.username}} </h5>
-  <button class="waves-effect btn z-depth-3" value="Approve" ng-click="Approve(user, user.username, username)">Approve</button>
+  <button class="btn btn-small waves-effect waves-light red z-depth-5" value="Approve" ng-click="Approve(user, user.username, username)">Approve</button>
   <br/>
 </div>
 
 <br/>
 
 <div class="offset-s9">
-  <button class="waves-effect btn z-depth-3" value="View" ng-click="ViewSongs()">View Songs</button>
+  <button class="btn btn-large waves-effect waves-light red z-depth-5" value="View" ng-click="ViewSongs()">View Songs</button>
 </div>
 
 <br/>
