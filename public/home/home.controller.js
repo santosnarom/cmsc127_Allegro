@@ -81,7 +81,6 @@
 					HomeService.Search($scope.query)
 					.then(function(data){
 						$scope.results = data;
-						console.log(data);
 						$scope.bar = true;
 					});
 		 }

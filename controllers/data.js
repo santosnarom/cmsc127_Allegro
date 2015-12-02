@@ -154,7 +154,7 @@ exports.search = function(req, res, next){
     }
 
     req.params.id = "%" + req.params.id + "%";
-
+    console.log(req.params.id);
       // SQL Query > Select Data
       var query = client.query("select * from song join is_composed_by on song.song_number = is_composed_by.song_number join artist on is_composed_by.artist_number = artist.artist_number where song_name like $1 ", [req.params.id]);
 
