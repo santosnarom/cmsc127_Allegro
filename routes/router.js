@@ -13,6 +13,15 @@ module.exports = function(router){
 	router.route('/playlist')
 		.get(data.viewPlaylist);
 
+	router.route('/remove-song')
+		.post(data.removeFromPlaylist);
+
+	router.route('/addplaylist-song')
+		.post(data.addToPlaylist);
+
+	router.route('/view-content')
+		.post(data.viewPlaylistContent);
+
 	router.route('/create-playlist')
 		.post(data.createPlaylist);
 
@@ -35,9 +44,7 @@ module.exports = function(router){
 		.post(data.approve);
 
 	router.route('/upload')
-		.post(upload.single('music'), function (req, res, next) {
-			res.send('Uploaded');
-		});
+		.post(upload.single('music'), data.upload);
 
 	router.route('/all')
 		.get(data.all);

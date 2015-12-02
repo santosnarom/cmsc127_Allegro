@@ -17,19 +17,21 @@ pg.connect(conString, function(err,client,done){
   client.query('create table reg_user(username varchar(32) primary key not null, password varchar(100) not null, date_approved date, admin_id varchar(10) references admin(admin_id));');
 
   //create table playlist
-  client.query('create table playlist(playlist_number int primary key not null, playlist_name varchar(32) not null, username varchar(32) references reg_user(username) not null);');
+  client.query('create table playlist(playlist_number serial primary key, playlist_name varchar(32) not null, username varchar(32) references reg_user(username) not null);');
 
   //create table artist
-  client.query('create table artist(artist_number int primary key not null, artist_name varchar(32) not null, playlist_number int references playlist(playlist_number), username varchar(32) references reg_user(username) not null, admin_id varchar(10) references admin(admin_id) not null);');
+  client.query('create table artist(artist_number serial primary key, artist_name varchar(32) not null, playlist_number int references playlist(playlist_number), username varchar(32) references reg_user(username) not null, admin_id varchar(10) references admin(admin_id));');
 
   //create table song
-  client.query('create table song(song_number int primary key not null, song_name varchar(32) not null, album varchar(32), track_length int not null, times_played int not null, admin_id varchar(10) references admin(admin_id) not null, username varchar(32) references reg_user(username) not null, playlist_number int references playlist(playlist_number) not null);');
+  client.query('create table song(song_number serial primary key, song_name varchar(32) not null, album varchar(32), track_length int, times_played int, admin_id varchar(10) references admin(admin_id), username varchar(32) references reg_user(username), playlist_number int references playlist(playlist_number), path varchar(250), filename varchar(250));');
 
   //create table is_composed_of (yung relationship)
   client.query('create table is_composed_of(playlist_number int references playlist(playlist_number) not null, artist_number int references artist(artist_number) not null, song_number int references song(song_number) not null, unique(playlist_number, artist_number, song_number));');
 
   //create table is_composed_by (yung relationship)
   client.query('create table is_composed_by(song_number int references song(song_number) not null, artist_number int references artist(artist_number) not null, unique(song_number, artist_number));');
+
+    client.query('create table recommended(username varchar(32) references reg_user(username), song_number int references song(song_number));');
 
   //edit: populate database
   //entry1 in table admin
@@ -52,7 +54,7 @@ pg.connect(conString, function(err,client,done){
         });
       });
   });
-*/
+*//*
   client.query("insert into admin values ('1111', 'password1', 'username1');");
   //entry2 in table admin
  client.query("insert into admin values ('1112', 'password2', 'username2');");
@@ -74,7 +76,7 @@ pg.connect(conString, function(err,client,done){
 
   //entry1 in is_composed_by
   client.query("insert into is_composed_by values ((select song_number from song where song_number=1), (select artist_number from artist where artist_number=1));");
-
+*/
   done();
 
 });

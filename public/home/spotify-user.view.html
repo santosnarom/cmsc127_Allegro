@@ -3,6 +3,7 @@
   <br/>
   <form action="/upload" method="POST" enctype="multipart/form-data" accept="audio/*">
     <h3>Upload</h3><input type="file" name="music"><br>
+    <h3>Artist</h3><input type="text" name="artist"><br>
     <input type="submit" value="Upload"><br/>
   </form>
 
@@ -32,11 +33,28 @@
     <div ng-repeat="playlist in playlists">
       <h5> {{playlist.playlist_name + " - " + playlist.username}}
         <button class="waves-effect btn z-depth-3" ng-if="playlist.username == username" ng-click="DeletePlaylist(playlist.playlist_number, playlist)">delete</button>
-        <button class="waves-effect btn z-depth-3" ng-if="playlist.username == username">edit</button>
-        <button class="waves-effect btn z-depth-3" ng-click="">View</button>
+        <button class="waves-effect btn z-depth-3" ng-click="ViewSongs(playlist.playlist_number)">Add Song</button>
+        <button class="waves-effect btn z-depth-3" ng-click="ViewPlaylistContent(playlist.playlist_number)">View</button>
       </h5>
       <br/>
     </div>
+
+    <br/>
+    <h3>Songs</h3>
+    <div ng-repeat="song in songs">
+      <h5> {{song.song_name + ' - ' + song.album + ' - ' + song.artist_name}} <button class="waves-effect btn z-depth-3" ng-click="AddToPlaylist(song, selectedPlaylist)">Add</button></h5>
+      <br/>
+    </div>
+      <br/>
+
+    <br/>
+    <h3>Content</h3>
+    <div ng-repeat="each in content">
+      <h5> {{each.song_name}} <button class="waves-effect btn z-depth-3" ng-if="each.username == username" ng-click="RemoveFromPlaylist(each,each.song_number)">Remove</button></h5>
+      <br/>
+    </div>
+      <br/>
+
 
       <br/>
 
@@ -62,3 +80,7 @@
     <br/>
   </div>
     <br/>
+
+    <audio controls="">
+      <source src="../../song.mp3" type="audio/mpeg">
+    </audio>

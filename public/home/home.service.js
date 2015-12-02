@@ -26,8 +26,53 @@
 		service.ViewPlaylist = ViewPlaylist;
 		service.DeletePlaylist = DeletePlaylist;
 		service.Search = Search;
+		service.ViewPlaylistContent = ViewPlaylistContent;
+		service.RemoveFromPlaylist = RemoveFromPlaylist;
+		service.AddToPlaylist = AddToPlaylist;
 
 		return service;
+
+		function AddToPlaylist(song, selectedPlaylist){
+			var deferred = $q.defer();
+			song = {"song_number":song.song_number,"playlist":selectedPlaylist};
+			$http.post('/addplaylist-song', song)
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't remove from playlist");
+				});
+
+			return deferred.promise;
+		}
+
+		function RemoveFromPlaylist(song){
+			var deferred = $q.defer();
+			song = {'number':song};
+			$http.post('/remove-song', song)
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't remove from playlist");
+				});
+
+			return deferred.promise;
+		}
+
+		function ViewPlaylistContent(playlist){
+			var deferred = $q.defer();
+			playlist = {'number':playlist};
+			$http.post('/view-content', playlist)
+				.success(function(data){
+					deferred.resolve(data);
+				})
+				.error(function(data){
+					deferred.reject("Can't retrieve playlist");
+				});
+
+			return deferred.promise;
+		}
 
 		function Search(searchQuery){
 			var deferred = $q.defer();
@@ -139,7 +184,6 @@
 			var deferred = $q.defer();
 			$http.post('/regularSignup', regular)
 				.success(function(data){
-						console.log(data);
 					deferred.resolve(data);
 				})
 				.error(function(data){

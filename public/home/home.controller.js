@@ -29,6 +29,13 @@
 					});
 		 }
 
+		 $scope.AddToPlaylist = function(song, selectedPlaylist){
+					HomeService.AddToPlaylist(song, selectedPlaylist)
+					.then(function(data){
+						$scope.content = data;
+					});
+		 }
+
 
 
 		 $scope.DeletePlaylist = function(number, playlist){
@@ -50,6 +57,15 @@
 					HomeService.CreatePlaylist($scope.playlist, username)
 					.then(function(data){
 						$scope.playlists = data;
+						$scope.playlist = "";
+					});
+		 }
+
+		 $scope.RemoveFromPlaylist = function(obj,song){
+					HomeService.RemoveFromPlaylist(song)
+					.then(function(data){
+						var con = $scope.content;
+						con.splice(con.indexOf(obj), 1);
 					});
 		 }
 
@@ -62,11 +78,22 @@
 					});
 		 }
 
-		 $scope.ViewSongs = function(){
+		 $scope.ViewPlaylistContent = function(playlist){
+					HomeService.ViewPlaylistContent(playlist)
+					.then(function(data){
+						if($scope.content == '' || $scope.content == undefined)
+						$scope.content = data;
+						else $scope.content = [];
+					});
+		 }
+
+		 $scope.ViewSongs = function(playlist_number){
 					HomeService.GetSongs()
 					.then(function(data){
-						if($scope.songs == '' || $scope.songs == undefined)
-						$scope.songs = data;
+						if($scope.songs == '' || $scope.songs == undefined){
+							$scope.songs = data;
+							$scope.selectedPlaylist = playlist_number;
+						}
 						else $scope.songs = [];
 					});
 		 }
@@ -86,6 +113,7 @@
 						console.log('File Uploaded');
 					});
 		 }
+
 
 		 $scope.AdminSignup = function(){
 					HomeService.AdminSignup($scope.admin)
