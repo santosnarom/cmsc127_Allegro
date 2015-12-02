@@ -93,6 +93,7 @@
     <li class="bold"><a class="waves-effect waves-red white-text" id="song" ng-click="ViewTopSongs()">&emsp;&emsp;Songs</a></li>
     <li class="bold"><a class="waves-effect waves-red white-text" id="artist" ng-click="ViewPlaylist()">&emsp;&emsp;Playlists</a></li>
     <li class="bold"><a class="waves-effect waves-red white-text" id="albums" ng-click="ShowCreate()">&emsp;&emsp;Create Playlist</a></li>
+    <li class="bold"><a class="waves-effect waves-red white-text" id="albums" ng-click="ShowSearch()">&emsp;&emsp;Search</a></li>
      <li class="bold"><a class="waves-effect waves-red white-text" id="playlists" ng-click="Logout()">&emsp;&emsp;Logout</a></li>
      <div id="mp3audio" class="row">
      <div class="col offset-s1 white-text">
@@ -199,6 +200,35 @@
             <input type="submit" class="btn btn-large waves-effect waves-light red z-depth-5" value="Create"><br/>
           </form>
       </div></div>
+
+      <div class="row white-text" ng-show="bar"><div id="songtab" class="col s12 offset-s2">
+            <form ng-submit="Search()" method="POST">
+            <h3>Search Query</h3><input type="text" name="playlist" ng-model="playlist"><br>
+            <input type="submit" class="btn btn-large waves-effect waves-light red z-depth-5" value="Search"><br/>
+          </form>
+      </div></div>
+
+      <div class="row white-text" ng-repeat="result in results" ng-if="bar">
+        <div id="songtab" class="col s12 offset-s2">
+          <div class="col s3 songcard">
+          <a class="waves-effect waves-light white-text" onClick="playMusic(this)" id="1" data-value="music/Mozart - Eine kleine Nachtmusik.mp3">
+          <div  class="card red hoverable">
+              <div class="card-image">
+                <img id="pic1" src="../src/theshins.jpg">
+              </div>
+              <div class="card-content truncate">
+                  <p id="title1">{{result.song_name}}</p>
+                  <small id="artist1">{{result.artist_name}}</small>
+                    <small id="artist1">{{"Number of Plays: " + result.times_played}}</small>
+              </div>
+
+          </div>
+          </a>
+        </div>
+        </div>
+        </div>
+
+
 </div>
 
 
