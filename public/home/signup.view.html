@@ -1,49 +1,58 @@
-<!--	SIGN UP	-->
+<!--	LOGIN	-->
     <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
       <div class="offset-s9">
-        <a href="#/"><button class="waves-effect btn z-depth-3" value="Login">Login</button></a>
+        <a href="#/"><button class="btn btn-large waves-effect waves-light red z-depth-5" value="Signup">Login</button></a>
       </div>
+    <div class="section no-pad-bot">
       <div class="container" >
         <br><br>
         <h1 class="header center white-text" style="text-shadow: 3px 3px black;">Live for Music</h1>
         <div class="row center">
           <h5 class="header col s12 white-text" style="text-shadow: 2px 2px black">Your home of sounds. Listen to all of your music in Allegro.</h5>
-          <div class="card col s10 offset-s3" style="height:320px;width:500px;border-radius: 10px;">
-		<ul class="tabs" >
-		    <li class="tab col s3"><h4 class="black-text">Admin</h4></li>
-		    <li class="tab col s3"><h4 class="black-text">User</h4></li>
+          <div class="card col s10 offset-s3 red darken-4 z-depth-4" style="height:350px;width:500px;border-radius: 10px;">
+		<ul class="tabs red darken-4" >
+		    <li class="tab col s3"><a>Admin</a></li>
+		    <li class="tab col s3"><a>Regular User</a></li>
 	    	</ul>
-	    	<div class="col s6"><br/>
-
-		    <form name="signup" class="header col s12 black-text" ng-submit="AdminSignup()" accept-charset="utf-8">
-    		  <ul>
-          <li><label for="adminId">Admin ID</label>
-          <input type="text" required="" name="id" ng-model="admin.id"/></li>
-    			<li><label for="username">Username</label>
-    			<input type="text" required="" name="username" ng-model="admin.username"/></li>
-    			<li><label for="password">Password</label>
-    			<input type="password" required="" name="password" ng-model="admin.password"/></li>
-    			<li>
-    			<input type="submit" value="Sign up" class="waves-effect btn z-depth-3" style="height: 50px; width: 125px"></li>
-    		  </ul>
-		    </form>
-		</div>
-		<div class="col s6"><br/>
-		    <form name="signup" class="header col s12 black-text" ng-submit="RegularSignup()" accept-charset="utf-8">
+	    	<div class="col s12"><br>
+          <div class="col s6">
+            <form name="signup" class="header col s12" ng-submit="AdminSignup()" accept-charset="utf-8">
+              <ul>
+              <li><label for="adminId">Admin ID</label>
+              <input type="text" required="" name="id" ng-model="admin.id"/></li>
+              <li><label for="username">Username</label>
+              <input type="text" required="" name="username" ng-model="admin.username"/></li>
+              <li><label for="password">Password</label>
+              <input type="password" required="" name="password" ng-model="admin.password"/></li>
+              <li>
+              <input type="submit" value="Signup" class="btn btn-large waves-effect waves-light red z-depth-5" style="height: 50px; width: 125px"></li>
+              </ul>
+            </form>
+      </div>
+      <div class="col s6">
+        <form name="signup" class="header col s12 black-text" ng-submit="RegularSignup()" accept-charset="utf-8">
           <ul>
           <li><label for="username">Username</label>
           <input type="text" required="" name="username" ng-model="regular.username"/></li>
           <li><label for="password">Password</label>
           <input type="password" required="" name="password" ng-model="regular.password"/></li>
           <li>
-          <input type="submit" value="Sign up" class="waves-effect btn z-depth-3" style="height: 50px; width: 125px"></li>
+          <input type="submit" value="Signup" class="btn btn-large waves-effect waves-light red z-depth-5" style="height: 50px; width: 125px"></li>
           </ul>
 		    </form>
+      </div>
 		</div>
 	  </div>
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="src/queen.jpg" style="display: block; transform: translate3d(-50%, 205px, 0px); min-height: 500px; width: 1400px;"></div>
+    <div class="parallax"><img src="../src/concert.jpg" style="display: block; transform: translate3d(-50%, 205px, 0px); min-height: 500px; width: 1400px;"></div>
   </div>
+
+  <footer class="page-footer red darken-3 white-text">
+    <div class="container center-align">
+      <h5>Group No. 1</h5>
+          <p>Colin James Naranjo&emsp;&emsp;Narom Santos&emsp;&emsp;Coleen Bobilles</p>
+          <p>Made through Materialize</p>
+     </div>
+  </footer>

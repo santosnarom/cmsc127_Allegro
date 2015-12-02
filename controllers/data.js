@@ -43,7 +43,6 @@ exports.upload = function(req, res, next){
         return res.status(500).json({success: false, data: err});
       }
 
-
       var query = client.query("insert into artist(artist_name,username) values($1, $2)", [req.body.artist, req.session.username]);
 
       // SQL Query > Select Data
@@ -157,7 +156,7 @@ exports.search = function(req, res, next){
     req.params.id = "%" + req.params.id + "%";
 
       // SQL Query > Select Data
-      var query = client.query("select * from song natural join is_composed_by natural join artist where song_name like $1 ", [req.params.id]);
+      var query = client.query("select * from song join is_composed_by on song.song_number = is_composed_by.song_number join artist on is_composed_by.artist_number = artist.artist_number where song_name like $1 ", [req.params.id]);
 
       // Stream results back one row at a time
       query.on('row', function(row) {

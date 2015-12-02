@@ -5208,6 +5208,8 @@ nav ul a span.badge {
         margin-left: 16.66667%; }
       .row .col.offset-m3 {
         margin-left: 25%; }
+
+
       .row .col.offset-m4 {
         margin-left: 33.33333%; }
       .row .col.offset-m5 {
@@ -5770,7 +5772,7 @@ small {
     width: 15%;
     min-width: 80px; }
     .tabs .tab a {
-      color: #008080;
+      color: white;
       display: block;
       width: 100%;
       height: 100%;
@@ -5782,7 +5784,7 @@ small {
       -ms-transition: color .28s ease;
       transition: color .28s ease; }
       .tabs .tab a:hover {
-        color: #008080; }
+        color: white; }
     .tabs .tab.disabled a {
       color: #708090;
       cursor: default; }
@@ -5790,7 +5792,7 @@ small {
     position: absolute;
     bottom: 0;
     height: 2px;
-    background-color: #008080;
+    background-color: white;
     will-change: left, right; }
 
 .hide-tab-scrollbar {
@@ -8109,6 +8111,7 @@ select {
 .picker__month-display {
   text-transform: uppercase;
   font-size: 2rem; }
+
 
 .picker__day-display {
   font-size: 4.5rem;

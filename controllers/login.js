@@ -97,6 +97,7 @@ else{
 							results.push(row);
 							sess.username = row.username;
 							sess.password = row.password;
+							sess.date_approved = row.date_approved;
 							return res.json(sess);
 						}
 						else{

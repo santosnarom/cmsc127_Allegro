@@ -15,9 +15,12 @@
 		 .then(function(data){
 			 $scope.username = data.username;
 			 $scope.admin_id = data.admin_id;
-				if($scope.username != undefined && $scope.admin_id == undefined)
+			 console.log(data.date_approved);
+				if(data.date_approved != null && $scope.username != undefined && $scope.admin_id == undefined){
 					$window.location.href = "#/home";
-				else if($scope.admin_id != undefined) $window.location.href = "#/admin-home";
+				}
+				else if($scope.admin_id != undefined){ $window.location.href = "#/admin-home";}
+
 		 });
 
 		 $scope.ViewPlaylist = function(){
@@ -179,7 +182,7 @@
 					HomeService.InitReg($scope.regular)
 					.then(function(data){
 						$scope.username = data.username;
-						if($scope.username != undefined)
+						if($scope.username != undefined && data.date_approved != null)
 							$window.location.href = "#/home";
 						else $window.location.href = "/";
 					});
